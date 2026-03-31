@@ -14,7 +14,7 @@ rust-version = "1.85"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-vzglyd-slide = { path = "../lume-slide" }
+vzglyd-slide = { git = "https://github.com/vzglyd/vzglyd-slide" }
 glam = "0.29"
 serde = { version = "1", features = ["derive"] }
 bytemuck = { version = "1", features = ["derive"] }

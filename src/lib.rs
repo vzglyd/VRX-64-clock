@@ -1,4 +1,3 @@
-#[path = "../../lume-slides-shared/date_utils.rs"]
 #[allow(dead_code)]
 mod date_utils;
 
