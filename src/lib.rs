@@ -28,16 +28,17 @@ struct ClockParams {
 #[cfg(target_arch = "wasm32")]
 #[unsafe(no_mangle)]
 pub extern "C" fn vzglyd_configure(len: i32) -> i32 {
-    println!("{:#?}", len);
     if len <= 0 {
         return 0;
     }
     let bytes = unsafe { &VZGLYD_PARAMS_BUF[..len as usize] };
     if let Ok(params) = serde_json::from_slice::<ClockParams>(bytes) {
         if let Some(bg) = params.background {
-            unsafe {
-                BG_COLOR = bg;
-                SPEC_BYTES = None;
+            if bg.iter().all(|value| value.is_finite()) {
+                unsafe {
+                    BG_COLOR = bg;
+                    SPEC_BYTES = None;
+                }
             }
         }
     }
